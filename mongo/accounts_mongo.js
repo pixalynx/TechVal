@@ -28,6 +28,7 @@ class MongoDatabase {
         catch(err){
             let result = err;
             return err;
+            db.close();
         }
     }
 
@@ -43,6 +44,7 @@ class MongoDatabase {
                 db.close();
             }else{
                 return 'failed';
+                db.close();
             }
 
         }
@@ -60,6 +62,7 @@ class MongoDatabase {
             db.close();
         }catch(err){
             return false;
+            db.close();
         }
     }
 
