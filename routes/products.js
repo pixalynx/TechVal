@@ -46,6 +46,17 @@ router.post('/createProduct', (req,res) => {
     })
 })
 
+router.get('/findProductbyType/:Type', (req,res) => {
+    let input = req.params.Type;
+    Data.findProductByType(input).then(result => {
+        if(result === false){
+            res.send('Cannot find the product type');
+        }else{
+            res.send(result);
+        }
+    })
+})
+
 
 
 module.exports = router;
