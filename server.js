@@ -1,6 +1,8 @@
 // Load in our express module to run the webserver
 const express = require("express");
 const app = express();
+// load our JWT
+const jwt = require('jsonwebtoken');
 // Get our Routes
 const accountRoutes = require('./routes/accounts');
 const productRoutes = require('./routes/products');
@@ -39,7 +41,18 @@ class appServer{
     }
 
     handleRoutes(){
-        
+
+        //token test//
+        app.get('/jwt', (req,res) => {
+            const user = {
+                username : 'pixalynx',
+                password : 'lol123XD'
+            }
+
+            jwt.sign({user},'secretKey', (err,token) => {
+                res.json({token});
+            }) 
+        })
     }
 }
 

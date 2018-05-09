@@ -59,6 +59,17 @@ router.post('/createAccount', (req,res) => {
            
 })
 
+router.post('/login', (req,res) => {
+    let myobj = req.body;
+    Data.login(myobj).then(result => {
+        if(result === true){
+            res.send('logged in');
+        }else{
+            res.send('Failed to log in');
+        }
+    })
+})
+
 
 
 module.exports = router;
