@@ -5,6 +5,9 @@
 
 const express = require('express');
 const router = express.Router();
+// Load JWT
+const jwt = require('jsonwebtoken');
+const secretKey = 'xboxone';
 // Load in accounts_mongo.js which has our Database class to handle different account functions
 const mongoDatabase = require('../mongo/accounts_mongo');
 // Create a new instance of the class and assign the DB pixalynx
@@ -63,7 +66,10 @@ router.post('/login', (req,res) => {
     let myobj = req.body;
     Data.login(myobj).then(result => {
         if(result === true){
-            res.send('logged in');
+            //res.send('logged in');
+            jwt.sign({myobj},secretKey, (err,token) => {
+                res.json({msg : 'Successfully Logged in', token});
+            })            
         }else{
             res.send('Failed to log in');
         }

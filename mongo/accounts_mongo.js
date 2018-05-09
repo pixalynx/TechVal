@@ -82,8 +82,10 @@ class MongoDatabase {
         let acclogin = await db.db(this.database).collection(Accounts).findOne(query);
         if(this.loginObj.password === acclogin.password){
             return true;
+            db.close();
         }else{
             return false;
+            db.close();
         }
       }catch(err){
           return false;
