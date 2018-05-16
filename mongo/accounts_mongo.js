@@ -1,6 +1,8 @@
 const MongoClient = require("mongodb").MongoClient;
 
-const MongoConn = "mongodb://localhost:27017/pixalynx";
+const MongoSettings = require('./mongo_settings').MongoSettings;
+
+const MongoConn = MongoSettings.uri;
 // the name of our accounts collection
 const Accounts = "Accounts";
 
